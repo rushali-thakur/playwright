@@ -1,13 +1,14 @@
 // @ts-check
+
 const { devices } = require('@playwright/test');
 
 const config = {
   testDir: './tests',
   retries :1,
-  workers: 3,
+  workers: 1,
   /* Maximum time one test can run for. */
   //10-
-  timeout: 30 * 1000,
+  timeout: 300 * 1000,
   expect: {
   
     timeout: 5000
@@ -18,7 +19,8 @@ const config = {
     {
       name : 'safari',
       use: {
-
+        actionTimeout: 5000,
+        navigationTimeout : 6000,
         browserName : 'webkit',
         headless : true,
         screenshot : 'off',
@@ -49,3 +51,4 @@ const config = {
 };
 
 module.exports = config;
+

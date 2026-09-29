@@ -1,11 +1,9 @@
+ const {test, expect} = require('@playwright/test');
+ const {customtest1} = require('../../utils/test-base');
 
- import {test, expect} from '@playwright/test';
- import {customTest} from '../utils_ts/test-base';
-
-import {POManager} from '../pageobjects_ts/POManager';
-
+ const {POManager} = require('../../pageobjects/POManager');
  //Json->string->js object
- const dataset =  JSON.parse(JSON.stringify(require("../utils/placeorderTestData.json")));
+ const dataset =  JSON.parse(JSON.stringify(require("../../utils/placeorderTestData.json")));
 
  
 for(const data of dataset)
@@ -28,8 +26,7 @@ for(const data of dataset)
 
     const ordersReviewPage = poManager.getOrdersReviewPage();
     await ordersReviewPage.searchCountryAndSelect("ind","India");
-    let orderId:any;
-     orderId = await ordersReviewPage.SubmitAndGetOrderId();
+    const orderId = await ordersReviewPage.SubmitAndGetOrderId();
    console.log(orderId);
    await dashboardPage.navigateToOrders();
    const ordersHistoryPage = poManager.getOrdersHistoryPage();
@@ -40,12 +37,10 @@ for(const data of dataset)
 
 
 
-
-    
  });
 }
 
-customTest(`Client App login`, async ({page,testDataForOrder})=>
+ customtest1(`Client App login`, async ({page,testDataForOrder})=>
  {
    const poManager = new POManager(page);
     //js file- Login js, DashboardPage

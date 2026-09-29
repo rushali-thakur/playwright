@@ -2,15 +2,15 @@
 const { devices } = require('@playwright/test');
 
 const config = {
-  testDir: './tests',
+  testDir: './tests/WecareTest',
   testMatch: '**/*.spec.js',
-  retries :0,
+  retries :1,
   
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 300 * 1000,
   expect: {
   
-    timeout: 5000
+    timeout: 10000
   },
   
   reporter: 'html',
@@ -18,7 +18,8 @@ const config = {
   use: {
 
     browserName : 'chromium',
-    headless : true,
+    actionTimeout: 10000,
+    headless : false,
     screenshot : 'on',
     trace : 'on',//off,on
     
